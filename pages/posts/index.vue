@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h3>Posts</h3>
+  <div class="container mx-auto">
+    <h3 class="text-red">Posts</h3>
     <pre>
-      <code>
+      <code class="red-text">
         {{ posts }}
       </code>
     </pre>
@@ -10,20 +10,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
       posts: []
-    }
+    };
   },
-  async asyncData() {
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts')
-
-    return { posts: data }
-  },
-  mounted() {
-    this.posts
+  async asyncData({ app }) {
+    const data = await app.$axios.$get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    return { posts: data };
   }
-}
+};
 </script>

@@ -17,10 +17,21 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  css: [
+    '@/assets/scss/app.scss'
+  ],
   /*
   ** Build configuration
   */
   build: {
+    postcss: [
+      require("tailwindcss")('tailwind.js'),
+      require('autoprefixer')
+    ],
+
     /*
     ** Run ESLint on save
     */
