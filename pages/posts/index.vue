@@ -1,16 +1,19 @@
 <template>
-  <div class="container mx-auto">
+  <div>
     <h3 class="text-red">Posts</h3>
-    <pre>
-      <code class="red-text">
-        {{ posts }}
-      </code>
-    </pre>
+    <div class="container mx-auto flex flex-col items-center">
+      <post/>
+    </div>
   </div>
 </template>
 
 <script>
+import Post from '@/components/post'
 export default {
+  name: 'Posts',
+  components: {
+    Post
+  },
   data() {
     return {
       posts: []
