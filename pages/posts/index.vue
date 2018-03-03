@@ -2,7 +2,7 @@
   <div>
     <h3 class="text-red">Posts</h3>
     <div class="container mx-auto flex flex-col items-center">
-      <post/>
+      <post v-for="post in posts" :key="post.id" :post="post"/>
     </div>
   </div>
 </template>
