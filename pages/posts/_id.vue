@@ -35,17 +35,21 @@ export default {
   head() {
     return {
       title: this.post.title
-    }
-  },
-  async asyncData({ params, app }) {
-    const data = await app.$axios.$get(
-      `https://jsonplaceholder.typicode.com/posts/${params.id}`
-    );
-    console.log(data);
-
-    return {
-      post: data
     };
+  },
+  async asyncData({ params, app, error }) {
+    try {
+      const data = await app.$axios.$get(
+        `https://jsonplaceholder.typicode.com/posts/${params.id}`
+      );
+      console.log(data);
+
+      return {
+        post: data
+      };
+    } catch (e) {
+      error({ statusCode: e.response.status });
+    }
   }
 };
 </script>

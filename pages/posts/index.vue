@@ -8,25 +8,29 @@
 </template>
 
 <script>
-import Post from '@/components/post'
+import Post from "@/components/post";
 export default {
-  name: 'Posts',
+  name: "Posts",
   components: {
     Post
   },
   head: {
-    title: 'Posts'
+    title: "Posts"
   },
   data() {
     return {
       posts: []
     };
   },
-  async asyncData({ app }) {
-    const data = await app.$axios.$get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    return { posts: data };
+  async asyncData({ app, error }) {
+    try {
+      const data = await app.$axios.$get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      return { posts: data };
+    } catch (e) {
+      error({ statusCode: e.response.status });
+    }
   }
 };
 </script>
