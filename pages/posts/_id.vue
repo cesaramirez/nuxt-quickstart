@@ -25,26 +25,27 @@
 </template>
 
 <script>
-  export default {
-    name: "PostDetail",
-    data() {
-      return {
-        post: null
-      }
-    },
-    async asyncData({
-      params,
-      app
-    }) {
-      const data = await app.$axios.$get(
-        `https://jsonplaceholder.typicode.com/posts/${params.id}`
-      );
-      console.log(data);
-
-      return {
-        post: data
-      };
+export default {
+  name: "PostDetail",
+  data() {
+    return {
+      post: null
+    };
+  },
+  head() {
+    return {
+      title: this.post.title
     }
-  };
+  },
+  async asyncData({ params, app }) {
+    const data = await app.$axios.$get(
+      `https://jsonplaceholder.typicode.com/posts/${params.id}`
+    );
+    console.log(data);
 
+    return {
+      post: data
+    };
+  }
+};
 </script>
